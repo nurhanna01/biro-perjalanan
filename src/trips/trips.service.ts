@@ -1,26 +1,119 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTripDto } from './dto/create-trip.dto';
-import { UpdateTripDto } from './dto/update-trip.dto';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+  Logger,
+  InternalServerErrorException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Trip } from './entities/trip.entity';
+import { User, UserRole } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class TripsService {
-  create(createTripDto: CreateTripDto) {
-    return 'This action adds a new trip';
+  private readonly logger = new Logger(TripsService.name);
+  constructor(
+    @InjectRepository(Trip)
+    private tripRepo: Repository<Trip>,
+  ) {}
+
+  async createTrips(
+    currentUser: User,
+    touristId: string,
+    destination: string,
+    startDate: Date,
+    endDate: Date,
+  ) {
+    try {
+      const trip = this.tripRepo.create({
+        destination,
+        startDate: startDate,
+        endDate: endDate,
+        user: { id: touristId } as User,
+      });
+
+      const saveData = await this.tripRepo.save(trip);
+
+      if (!saveData.id) throw new InternalServerErrorException();
+
+      return saveData;
+    } catch (error) {
+      this.logger.error(`Error when create trip : ${error.message}`);
+      throw error;
+    }
   }
 
-  findAll() {
-    return `This action returns all trips`;
+  async getTrips(currentUser: User) {
+    try {
+      if (currentUser.role === UserRole.EMPLOYEE) {
+        return this.tripRepo.find({
+          relations: ['user'],
+          order: { startDate: 'DESC' },
+        });
+      } else {
+        return this.tripRepo.find({
+          where: { user: { id: currentUser.id } },
+          order: { startDate: 'DESC' },
+        });
+      }
+    } catch (error) {
+      this.logger.error(`Error when get trips : ${error.message}`);
+      throw error;
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} trip`;
+  async getDetail(currentUser: User, id: string) {
+    try {
+      let data;
+      if (currentUser.role === UserRole.EMPLOYEE) {
+        data = await this.tripRepo.find({
+          relations: ['user'],
+          where: { id },
+        });
+      } else if (currentUser.role === UserRole.TOURIST) {
+        data = await this.tripRepo.find({
+          relations: ['user'],
+          where: { id, user: { id: currentUser.id } },
+        });
+      }
+      if (data.length == 0) throw new NotFoundException();
+      return data;
+    } catch (error) {
+      this.logger.error(`Error when get detail trip : ${error.message}`);
+      throw error;
+    }
   }
 
-  update(id: number, updateTripDto: UpdateTripDto) {
-    return `This action updates a #${id} trip`;
+  async updateTrip(currentUser: User, tripId: string, data: Partial<Trip>) {
+    try {
+      if (currentUser.role !== UserRole.EMPLOYEE) {
+        throw new ForbiddenException('Only employees can update trips.');
+      }
+
+      const trip = await this.tripRepo.findOne({ where: { id: tripId } });
+      if (!trip) throw new NotFoundException('Trip not found');
+
+      Object.assign(trip, data);
+      return this.tripRepo.save(trip);
+    } catch (error) {
+      this.logger.error(`Error when update trip : ${error.message}`);
+      throw error;
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} trip`;
+  async deleteTrip(currentUser: User, tripId: string) {
+    try {
+      if (currentUser.role !== UserRole.EMPLOYEE) {
+        throw new ForbiddenException('Only employees can delete trips.');
+      }
+
+      const result = await this.tripRepo.delete(tripId);
+      if (result.affected === 0) throw new NotFoundException('Trip not found');
+      return { deleted: true };
+    } catch (error) {
+      this.logger.error(`Error when delete trip : ${error.message}`);
+      throw error;
+    }
   }
 }
