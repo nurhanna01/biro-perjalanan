@@ -1,0 +1,1688 @@
+{
+	"info": {
+		"_postman_id": "7bfd1ef3-f09e-4419-ba46-a6c15171a69d",
+		"name": "biro-perjalanan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11796875"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users - Create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"hanna\",\r\n    \"email\":\"xxxx@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"tourist\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Users - Create - Error Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"hanna\",\r\n    \"email\":\"xx@gmail.com\",\r\n    \"password\":\"123456\",\r\n    \"role\":\"tourist\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-MZJWZc+Y+RUbHpnhz2B2Vipii24\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 18:55:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Forbidden resource\",\n    \"error\": \"Forbidden\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "Users - Create - Error Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"hanna\",\r\n    \"email\":\"xxgmail.com\",\r\n    \"password\":\"12345\",\r\n    \"role\":\"tourist\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "133"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"85-byqlLciUQaqt4xm7T3PapQvFb2Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 18:57:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        \"email must be an email\",\n        \"password must be longer than or equal to 6 characters\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "Users - Get All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Users - Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1397"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"575-d1wPMxvLb9sAAbQB0ouwHNpPj8o\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:05:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n            \"name\": \"Tourist User\",\n            \"email\": \"tourist@example.com\",\n            \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n            \"role\": \"tourist\",\n            \"isActive\": true,\n            \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n            \"updatedAt\": \"2025-12-24T18:06:03.505Z\"\n        },\n        {\n            \"id\": \"7002974a-3acb-4284-8ef9-1a5684e755d2\",\n            \"name\": \"hanna\",\n            \"email\": \"xx@gmail.com\",\n            \"password\": \"$2b$10$VJoGw8lXAYhUhPxUvthGWu3qiWV5nkTqnNx32s0nqo/hG0m22WUsm\",\n            \"role\": \"tourist\",\n            \"isActive\": true,\n            \"createdAt\": \"2025-12-24T18:58:16.928Z\",\n            \"updatedAt\": \"2025-12-24T18:58:16.928Z\"\n        },\n        {\n            \"id\": \"97143658-504f-4332-bd1b-ac742a962a10\",\n            \"name\": \"hanna\",\n            \"email\": \"xxxx@gmail.com\",\n            \"password\": \"$2b$10$tFGVU6OzKCuH2FK/C61J.OjOtezbqgjH4QnkaQEkBVfVkqcfpWl9K\",\n            \"role\": \"tourist\",\n            \"isActive\": true,\n            \"createdAt\": \"2025-12-24T19:00:23.541Z\",\n            \"updatedAt\": \"2025-12-24T19:00:23.541Z\"\n        },\n        {\n            \"id\": \"9f33986c-25c1-46bf-8048-2b6f2b03e74e\",\n            \"name\": \"Nur Hanna\",\n            \"email\": \"pegawai@example.com\",\n            \"password\": \"$2b$10$eG660cprlR/gdU2nBx6U8.WC0lNts1MKA5vF7d2M3VtpLKvOewguS\",\n            \"role\": \"employee\",\n            \"isActive\": true,\n            \"createdAt\": \"2025-12-24T18:06:03.489Z\",\n            \"updatedAt\": \"2025-12-24T18:06:03.489Z\"\n        },\n        {\n            \"id\": \"dfaf092a-3ba1-4fe7-80ae-5321442db1ac\",\n            \"name\": \"hanna\",\n            \"email\": \"xxx@gmail.com\",\n            \"password\": \"$2b$10$yrWPI6Dt6vgZYy6Q0Kf/5OJTcO3crpR6pJw8BmCdVAfute7iHYMdO\",\n            \"role\": \"tourist\",\n            \"isActive\": true,\n            \"createdAt\": \"2025-12-24T18:58:51.141Z\",\n            \"updatedAt\": \"2025-12-24T18:58:51.141Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Users - Get Detail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users/0f812233-0e41-463d-b0ef-f408adfec96e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"0f812233-0e41-463d-b0ef-f408adfec96e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Users - Get Detail - Error Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/users/0f812233-0e41-463d-b0ef-f408adfec96",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"0f812233-0e41-463d-b0ef-f408adfec96"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-/Yq5hWa9szmc8QYvvgY6EdQ9WJE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:11:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"user not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Users - Get Detail - Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/users/0f812233-0e41-463d-b0ef-f408adfec96e",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"0f812233-0e41-463d-b0ef-f408adfec96e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "317"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13d-sZGT19T/Ya0dmykqD6eO+4gULqI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:12:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n            \"name\": \"Tourist User\",\n            \"email\": \"tourist@example.com\",\n            \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n            \"role\": \"tourist\",\n            \"isActive\": true,\n            \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n            \"updatedAt\": \"2025-12-24T18:06:03.505Z\",\n            \"trips\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Users - Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"hannaaaaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/8c9dbdb8-2021-4195-a46e-bbeb975817fb",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"8c9dbdb8-2021-4195-a46e-bbeb975817fb"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Users - Update",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"hannaaaaa\",\r\n    \"email\":\"haha@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users/0f812233-0e41-463d-b0ef-f408adfec96e",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"0f812233-0e41-463d-b0ef-f408adfec96e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "296"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"128-84nYEEYKWMHQ9llcI2tM8JI255A\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:13:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n        \"name\": \"hannaaaaa\",\n        \"email\": \"haha@gmail.com\",\n        \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n        \"role\": \"tourist\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n        \"updatedAt\": \"2025-12-24T19:13:49.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Users - Delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users/7002974a-3acb-4284-8ef9-1a5684e755d2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"7002974a-3acb-4284-8ef9-1a5684e755d2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Users - Delete - Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/users/d20baeb5-60a1-4b00-b364-b0751e0496a",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"d20baeb5-60a1-4b00-b364-b0751e0496a"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-7dsO5LJbH+bIfRGvh2fjufiOW7s\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:14:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Users - Delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/users/7002974a-3acb-4284-8ef9-1a5684e755d2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"7002974a-3acb-4284-8ef9-1a5684e755d2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-3wmaBTYscJutU9EWFMjbkAKW9qk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:14:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": {\n        \"deleted\": true\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth - Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"pegawai@example.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Auth - Login - Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"tourist1@example.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-/Yq5hWa9szmc8QYvvgY6EdQ9WJE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 18:46:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"user not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Auth - Login - Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"tourist@example.com\",\r\n    \"password\":\"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "320"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"140-Y4GK5cbZAsiwOgv64EPv0cMpGbY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 18:47:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": {\n        \"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmODEyMjMzLTBlNDEtNDYzZC1iMGVmLWY0MDhhZGZlYzk2ZSIsIm5hbWUiOiJUb3VyaXN0IFVzZXIiLCJlbWFpbCI6InRvdXJpc3RAZXhhbXBsZS5jb20iLCJyb2xlIjoidG91cmlzdCIsImlhdCI6MTc2NjYwMjAyOSwiZXhwIjoxNzY2NjAyMDMyfQ.93fefculyY1j8sdEyo4yW3_T411N9P1RSU9RR_K08Lw\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Trips",
+			"item": [
+				{
+					"name": "Trip - Create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"0f812233-0e41-463d-b0ef-f408adfec96\",\n    \"destination\":\"korea\",\n    \"start_date\":\"2025-12-12\",\n    \"end_date\":\"2026-12-02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/trips",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"trips"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Trip - Create - Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\":\"0f812233-0e41-463d-b0ef-f408adfec96e\",\n    \"destination\":\"korea\",\n    \"start_date\":\"2025-12-12\",\n    \"end_date\":\"2026-12-02\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "296"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"128-Po8sjIYuCajAcu25GoX6KJa5aIA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:19:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": {\n        \"destination\": \"korea\",\n        \"startDate\": \"2025-12-11T17:00:00.000Z\",\n        \"endDate\": \"2026-12-01T17:00:00.000Z\",\n        \"user\": {\n            \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\"\n        },\n        \"id\": \"351b7713-f970-43f9-bfc3-9ae9a1302aaf\",\n        \"createdAt\": \"2025-12-24T19:19:44.929Z\",\n        \"updatedAt\": \"2025-12-24T19:19:44.929Z\"\n    }\n}"
+						},
+						{
+							"name": "Trip - Create - Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\":\"0f812233-0e41-463d-b0ef-f408adfec96\",\n    \"destination\":\"korea\",\n    \"start_date\":\"2025-12-12\",\n    \"end_date\":\"2026-12-02\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-rlKccw1E+/fV8niQk4oFitDfPro\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:20:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 500,\n    \"message\": \"Internal server error\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Trip - Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/trips/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"trips",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Trip - Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2039"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f7-nYJUOACsmXDAfMGF6qJOdVT7e6E\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:20:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": \"351b7713-f970-43f9-bfc3-9ae9a1302aaf\",\n            \"destination\": \"korea\",\n            \"startDate\": \"2025-12-11T17:00:00.000Z\",\n            \"endDate\": \"2026-12-01T17:00:00.000Z\",\n            \"createdAt\": \"2025-12-24T19:19:44.929Z\",\n            \"updatedAt\": \"2025-12-24T19:19:44.929Z\",\n            \"user\": {\n                \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n                \"name\": \"hannaaaaa\",\n                \"email\": \"haha@gmail.com\",\n                \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n                \"role\": \"tourist\",\n                \"isActive\": true,\n                \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n                \"updatedAt\": \"2025-12-24T19:13:49.000Z\"\n            }\n        },\n        {\n            \"id\": \"5ad5329d-bd0c-4d89-8bcb-4d7b73d4db84\",\n            \"destination\": \"korea\",\n            \"startDate\": \"2025-12-11T17:00:00.000Z\",\n            \"endDate\": \"2026-12-01T17:00:00.000Z\",\n            \"createdAt\": \"2025-12-24T19:18:20.828Z\",\n            \"updatedAt\": \"2025-12-24T19:18:20.828Z\",\n            \"user\": {\n                \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n                \"name\": \"hannaaaaa\",\n                \"email\": \"haha@gmail.com\",\n                \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n                \"role\": \"tourist\",\n                \"isActive\": true,\n                \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n                \"updatedAt\": \"2025-12-24T19:13:49.000Z\"\n            }\n        },\n        {\n            \"id\": \"76bf9fb7-0c55-4ec8-afc6-b8d78f09cfd3\",\n            \"destination\": \"korea\",\n            \"startDate\": \"2025-12-11T17:00:00.000Z\",\n            \"endDate\": \"2026-12-01T17:00:00.000Z\",\n            \"createdAt\": \"2025-12-24T19:18:08.912Z\",\n            \"updatedAt\": \"2025-12-24T19:18:08.912Z\",\n            \"user\": {\n                \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n                \"name\": \"hannaaaaa\",\n                \"email\": \"haha@gmail.com\",\n                \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n                \"role\": \"tourist\",\n                \"isActive\": true,\n                \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n                \"updatedAt\": \"2025-12-24T19:13:49.000Z\"\n            }\n        },\n        {\n            \"id\": \"dc87e300-d38c-43fe-b569-74c5caaa938c\",\n            \"destination\": \"korea\",\n            \"startDate\": \"2025-12-11T17:00:00.000Z\",\n            \"endDate\": \"2026-12-01T17:00:00.000Z\",\n            \"createdAt\": \"2025-12-24T19:19:25.539Z\",\n            \"updatedAt\": \"2025-12-24T19:19:25.539Z\",\n            \"user\": {\n                \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n                \"name\": \"hannaaaaa\",\n                \"email\": \"haha@gmail.com\",\n                \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n                \"role\": \"tourist\",\n                \"isActive\": true,\n                \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n                \"updatedAt\": \"2025-12-24T19:13:49.000Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Trip - Get Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/trips/351b7713-f970-43f9-bfc3-9ae9a1302aaf",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"trips",
+								"351b7713-f970-43f9-bfc3-9ae9a1302aaf"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Trip - Get Detail - Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips/351b7713-f970-43f9-bfc3-9ae9a1302aa",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips",
+										"351b7713-f970-43f9-bfc3-9ae9a1302aa"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-5C7N4rcpDEmIiuT+YkUQ7dshErk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:27:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Trip - Get Detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips/351b7713-f970-43f9-bfc3-9ae9a1302aaf",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips",
+										"351b7713-f970-43f9-bfc3-9ae9a1302aaf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "527"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20f-ErtmfgK4m4MPd3l0WdpgRfGtvhc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:27:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": \"351b7713-f970-43f9-bfc3-9ae9a1302aaf\",\n            \"destination\": \"korea\",\n            \"startDate\": \"2025-12-11T17:00:00.000Z\",\n            \"endDate\": \"2026-12-01T17:00:00.000Z\",\n            \"createdAt\": \"2025-12-24T19:19:44.929Z\",\n            \"updatedAt\": \"2025-12-24T19:19:44.929Z\",\n            \"user\": {\n                \"id\": \"0f812233-0e41-463d-b0ef-f408adfec96e\",\n                \"name\": \"hannaaaaa\",\n                \"email\": \"haha@gmail.com\",\n                \"password\": \"$2b$10$v9uIHizGWi6a0rJEbn8N1utYXvegpf/QQmoTxuyqHNkZWJETavqSS\",\n                \"role\": \"tourist\",\n                \"isActive\": true,\n                \"createdAt\": \"2025-12-24T18:06:03.505Z\",\n                \"updatedAt\": \"2025-12-24T19:13:49.000Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Trip - Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"destination\":\"south korea\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/trips/351b7713-f970-43f9-bfc3-9ae9a1302aaf",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"trips",
+								"351b7713-f970-43f9-bfc3-9ae9a1302aaf"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Trip - Update - Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips/865b4391-ff63-40db-8199-03f47d2a7e28",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips",
+										"865b4391-ff63-40db-8199-03f47d2a7e28"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-NVOlj1beGiRNF/fjl/wrv4xLrk8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:28:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Trip not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Trip - Update - Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"destination\":\"south korea\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips/351b7713-f970-43f9-bfc3-9ae9a1302aaf",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips",
+										"351b7713-f970-43f9-bfc3-9ae9a1302aaf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-QUvMH1hEyDXpHGsLoMU2AClpXL0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:29:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": {\n        \"id\": \"351b7713-f970-43f9-bfc3-9ae9a1302aaf\",\n        \"destination\": \"south korea\",\n        \"startDate\": \"2025-12-11T17:00:00.000Z\",\n        \"endDate\": \"2026-12-01T17:00:00.000Z\",\n        \"createdAt\": \"2025-12-24T19:19:44.929Z\",\n        \"updatedAt\": \"2025-12-24T19:29:25.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Trip - Delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":\"052504ed-350f-4530-ac0f-338c8f7f0cdf\",\n    \"destination\":\"korea\",\n    \"start_date\":\"2025\",\n    \"end_date\":\"2026\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/trips/351b7713-f970-43f9-bfc3-9ae9a1302aaf",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"trips",
+								"351b7713-f970-43f9-bfc3-9ae9a1302aaf"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Trip - Delete - Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\":\"052504ed-350f-4530-ac0f-338c8f7f0cdf\",\n    \"destination\":\"korea\",\n    \"start_date\":\"2025\",\n    \"end_date\":\"2026\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips/1f3e435e-48b2-49df-8724-d156dcc48f78",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips",
+										"1f3e435e-48b2-49df-8724-d156dcc48f78"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-NVOlj1beGiRNF/fjl/wrv4xLrk8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:29:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Trip not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "Trip - Delete - Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "authorization",
+										"value": "{{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\":\"052504ed-350f-4530-ac0f-338c8f7f0cdf\",\n    \"destination\":\"korea\",\n    \"start_date\":\"2025\",\n    \"end_date\":\"2026\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/trips/351b7713-f970-43f9-bfc3-9ae9a1302aaf",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"trips",
+										"351b7713-f970-43f9-bfc3-9ae9a1302aaf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-3wmaBTYscJutU9EWFMjbkAKW9qk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 19:30:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"\",\n    \"data\": {\n        \"deleted\": true\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
