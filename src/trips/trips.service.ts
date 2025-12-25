@@ -16,20 +16,28 @@ export class TripsService {
   constructor(
     @InjectRepository(Trip)
     private tripRepo: Repository<Trip>,
+    @InjectRepository(User)
+    private userRepo: Repository<User>,
   ) {}
 
   async createTrips(
     currentUser: User,
     touristId: string,
     destination: string,
-    startDate: Date,
-    endDate: Date,
+    startDate: string,
+    endDate: string,
   ) {
     try {
+      const user = await this.userRepo.findOne({
+        where: { id: touristId },
+      });
+      if (!user) {
+        throw new NotFoundException(`User with id ${touristId} not found`);
+      }
       const trip = this.tripRepo.create({
         destination,
-        startDate: startDate,
-        endDate: endDate,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
         user: { id: touristId } as User,
       });
 

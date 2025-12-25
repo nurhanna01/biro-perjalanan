@@ -8,8 +8,8 @@ export class CreateTripDto {
   destination: string;
 
   @IsDateString()
-  start_date: Date;
+  start_date: string;
 
   @IsDateString()
-  end_date: Date;
+  end_date: string;
 }

@@ -18,6 +18,11 @@ import { Roles } from 'src/auth/roles.decorator';
 import { UserRole } from './entities/user.entity';
 import { IRequest } from 'src/auth/interface/request.interface';
 import { RolesGuard } from 'src/auth/roles.guard';
+import {
+  CreateUserInterface,
+  User,
+  UserDetail,
+} from './interface/user-response.interface';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('users')
@@ -26,11 +31,18 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   @Post()
   @Roles(UserRole.EMPLOYEE)
-  async create(@Body() createUserDto: CreateUserDto) {
+  async create(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<CreateUserInterface> {
     try {
       const data = await this.usersService.createUsers(createUserDto);
       return {
-        data: { email: data.email, name: data.name },
+        data: {
+          id: data.id,
+          email: data.email,
+          name: data.name,
+          role: data.role,
+        },
         message: 'success',
       };
     } catch (error) {
@@ -41,9 +53,15 @@ export class UsersController {
 
   @Get()
   @Roles(UserRole.EMPLOYEE)
-  async findAll() {
+  async findAll(): Promise<User[]> {
     try {
-      return await this.usersService.findAllUser();
+      const getData = await this.usersService.findAllUser();
+      const data = getData.map((user) => ({
+        ...user,
+        createdAt: user.createdAt.toISOString(),
+        updatedAt: user.updatedAt.toISOString(),
+      }));
+      return data;
     } catch (error) {
       this.logger.error(`Error when get user : ${error.message}`);
       throw error;
@@ -51,7 +69,10 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string, @Req() req: IRequest) {
+  async findOne(
+    @Param('id') id: string,
+    @Req() req: IRequest,
+  ): Promise<UserDetail> {
     try {
       return await this.usersService.findOneUser(req.user, id);
     } catch (error) {
@@ -62,9 +83,21 @@ export class UsersController {
 
   @Patch(':id')
   @Roles(UserRole.EMPLOYEE)
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise<CreateUserInterface> {
     try {
-      return await this.usersService.updateUser(id, updateUserDto);
+      const data = await this.usersService.updateUser(id, updateUserDto);
+      return {
+        data: {
+          id: data.id,
+          email: data.email,
+          name: data.name,
+          role: data.role,
+        },
+        message: 'success',
+      };
     } catch (error) {
       this.logger.error(`Error when update user : ${error.message}`);
       throw error;
